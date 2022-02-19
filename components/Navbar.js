@@ -30,7 +30,7 @@ function Navbar({ address }) {
                flex flex-col items-start justify-center hover:cursor-default hidden md:inline px-2 shadow-md py-1"
           >
             <div className="text-black font-semibold">
-              {address.slice(0, 7)}...{address.slice(35)}
+              {address?.slice(0, 7)}...{address?.slice(35)}
             </div>
           </div>
           <button
