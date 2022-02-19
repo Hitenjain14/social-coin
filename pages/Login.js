@@ -1,7 +1,17 @@
-import React from "react";
-import tw from "tailwind-styled-components";
+import React, { useEffect } from 'react';
+import tw from 'tailwind-styled-components';
+import { useWeb3 } from '@3rdweb/hooks';
+import Router, { useRouter } from 'next/router';
 
 function Login() {
+  const { address, connectWallet } = useWeb3();
+  const router = useRouter();
+  useEffect(() => {
+    if (address) {
+      router.push('/');
+    }
+  }, [address]);
+
   return (
     <Wrapper>
       <Head>
@@ -14,7 +24,7 @@ function Login() {
         </Collab>
       </Head>
       <Buttons>
-        <Button>
+        <Button onClick={() => connectWallet('injected')}>
           <Icon src="/public/metamask.png" />
           Connect using MetaMask
         </Button>

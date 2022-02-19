@@ -2,9 +2,9 @@ import React from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
-function Navbar() {
+function Navbar({ address }) {
   const router = useRouter();
-  const address = '0x111111111111111111111111111111111111111';
+
   return (
     <header className="w-full bg-white">
       <div className="flex items-center px-1 flex-grow py-2 font-bold text-base text-black w-full ">
