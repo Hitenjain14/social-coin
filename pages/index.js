@@ -1,8 +1,10 @@
 import Navbar from '../components/Navbar';
 import Slider from '../components/Slider';
 import { useWeb3 } from '@3rdweb/hooks';
+import { useRouter } from 'next/router';
 
 export default function Home() {
+  const router = useRouter();
   const { address } = useWeb3();
 
   return (
