@@ -1,5 +1,5 @@
-import React from "react";
-import tw from "tailwind-styled-components";
+import React from 'react';
+import tw from 'tailwind-styled-components';
 
 function Coins({ coin }) {
   //console.log(coin);
@@ -17,7 +17,13 @@ function Coins({ coin }) {
           <p className="text-2xl font-normal">${coin.price}</p>
         </Element>
         <Change>
-          <p className="text-2xl font-normal">{coin.change}%</p>
+          {coin.change > 0 ? (
+            <p className="text-2xl font-normal text-green-500">
+              +{coin.change}%
+            </p>
+          ) : (
+            <p className="text-2xl font-normal">{coin.change}%</p>
+          )}
         </Change>
       </Wrapper>
     </Return>
