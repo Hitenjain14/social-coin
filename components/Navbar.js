@@ -18,11 +18,12 @@ function Navbar({ address }) {
       right: 'auto',
       bottom: 'auto',
       transform: 'translate(-50%, -50%)',
-      backgroundColor: '#f3f4f6',
+      backgroundColor: '#0a0b0d',
       padding: 0,
       border: 'none',
     },
     overlay: {
+      zIndex: 1000,
       backgroundColor: 'rgba(10,11,13,0.75)',
     },
   };

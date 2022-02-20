@@ -20,7 +20,7 @@ function Buy({ selectedToken, setAction, walletAddress, setFrom }) {
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
           />
-          <FlexSpan>{selectedToken.symbol}</FlexSpan>
+          <FlexSpan>{selectedToken?.symbol}</FlexSpan>
         </FlexInputContainer>
         <Warning style={{ color: amount && '#000' }}>
           Amount is a required field
@@ -36,9 +36,9 @@ function Buy({ selectedToken, setAction, walletAddress, setFrom }) {
             }}
           >
             <Icon>
-              <IconImg src={`/${selectedToken.logo}.png`} />
+              <IconImg src={`/${selectedToken?.logo}.png`} />
             </Icon>
-            <CoinName>{selectedToken.name}</CoinName>
+            <CoinName>{selectedToken?.name}</CoinName>
           </CoinSelectList>
         </Row>
         <Divider />
@@ -60,7 +60,7 @@ function Buy({ selectedToken, setAction, walletAddress, setFrom }) {
         <Balance>
           {numberFormat(
             // @ts-ignore
-            amount * selectedToken.price
+            amount * selectedToken?.price
           )}
         </Balance>
       </Row>
