@@ -4,19 +4,19 @@ const abi = [
   {
     inputs: [
       {
+        internalType: 'string',
+        name: '_name',
+        type: 'string',
+      },
+      {
+        internalType: 'string',
+        name: '_symbol',
+        type: 'string',
+      },
+      {
         internalType: 'address',
-        name: 'owner',
+        name: '_owner',
         type: 'address',
-      },
-      {
-        internalType: 'string',
-        name: 'name_',
-        type: 'string',
-      },
-      {
-        internalType: 'string',
-        name: 'symbol_',
-        type: 'string',
       },
     ],
     stateMutability: 'nonpayable',
@@ -294,9 +294,8 @@ const abi = [
   },
 ];
 
-const instance = new web3.eth.Contract(
-  abi,
-  '0xE32E18c85cA013E133f700A97818ba34aB4A49f2'
-);
+const myToken = (address) => {
+  return new web3.eth.Contract(abi, address);
+};
 
-export default instance;
+export default myToken;

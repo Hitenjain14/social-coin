@@ -1,7 +1,12 @@
 import React, { useEffect } from 'react';
 import tw from 'tailwind-styled-components';
 import { useWeb3 } from '@3rdweb/hooks';
-import Router, { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
+import web3 from '../ethereum/web3';
+
+import { ToastContainer, toast } from 'react-toastify';
+import { Flip } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Login() {
   const { address, connectWallet } = useWeb3();
@@ -11,6 +16,32 @@ function Login() {
       router.push('/');
     }
   }, [address]);
+  useEffect(() => {
+    router.prefetch('/');
+  }, []);
+
+  const notify = () => {
+    toast.info('Please connect to polygon mumbai', {
+      position: 'top-center',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'dark',
+    });
+  };
+
+  const connectMetamask = async () => {
+    const chainId = await web3.eth.net.getId();
+    console.log(chainId);
+    if (chainId === 80001) {
+      await connectWallet('injected');
+    } else {
+      notify();
+    }
+  };
 
   return (
     <Wrapper>
@@ -24,12 +55,24 @@ function Login() {
         </Collab>
       </Head>
       <Buttons>
-        <Button onClick={() => connectWallet('injected')}>
+        <Button onClick={() => connectMetamask()}>
           <Icon src="/public/metamask.png" />
           Connect using MetaMask
         </Button>
         <Button>Be an Artist</Button>
       </Buttons>
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        transition={Flip}
+      />
     </Wrapper>
   );
 }
