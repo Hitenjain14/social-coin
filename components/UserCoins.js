@@ -26,6 +26,9 @@ function Coins({ coin }) {
             <p className="text-xl text-red-500 font-normal">{coin.change}%</p>
           )}
         </Change>
+        <Amount>
+          <p>coin.amount</p>
+        </Amount>
       </Wrapper>
     </Return>
   );
@@ -43,6 +46,9 @@ const Element = tw.div`
 w-[20vw] p-4 flex justify-center font-sans
 `;
 const Change = tw.div`
+w-[20vw] p-4 flex flex-col items-center font-sans
+`;
+const Amount = tw.div`
 w-[20vw] p-4 flex flex-col items-end font-sans
 `;
 const Name = tw.div`

@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-import myToken from '../ethereum/MyToken';
-import web3 from '../ethereum/web3';
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import myToken from "../ethereum/MyToken";
+import web3 from "../ethereum/web3";
+import tw from "tailwind-styled-components";
+import UserCoins from "./../components/UserCoins";
 
 function Portfolio({ address }) {
   const router = useRouter();
@@ -19,7 +21,7 @@ function Portfolio({ address }) {
           const address = await web3.eth.getAccounts();
           if (address[0]) {
             let val = await contract.methods.balanceOf(address[0]).call();
-            val = web3.utils.fromWei(val, 'ether');
+            val = web3.utils.fromWei(val, "ether");
             val = Number(val);
             // val = val = val * coin.price;
             bal = bal + val;
@@ -35,7 +37,7 @@ function Portfolio({ address }) {
               setInfo(info);
             }
           } else {
-            router.push('/Login');
+            router.push("/Login");
           }
         })
       );
@@ -44,7 +46,36 @@ function Portfolio({ address }) {
     getInfo();
   }, [address]);
 
-  return <div></div>;
+  return (
+    <div>
+      <Table>
+        <TableHead>
+          <Col className="w-[18vw] flex justify-start">
+            <p className="text-gray-700 font-sans">Name</p>
+          </Col>
+          <Col className="w-[18vw] flex justify-center">
+            <p className="text-gray-700 font-sans">Price</p>
+          </Col>
+          <Col className="w-[18vw] flex justify-center">
+            <p className="text-gray-700 font-sans">Change</p>
+          </Col>
+          <Col className="w-[18vw] flex justify-end">
+            <p className="text-gray-700 font-sans">Amount</p>
+          </Col>
+        </TableHead>
+        {info.map((coin, i) => (
+          <UserCoins key={i} coin={coin} />
+        ))}
+      </Table>
+    </div>
+  );
 }
+const Table = tw.div`
+flex flex-col
+`;
+const TableHead = tw.div`
+flex justify-evenly mt-3
+`;
+const Col = tw.div``;
 
 export default Portfolio;

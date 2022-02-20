@@ -24,9 +24,15 @@ function TopCoins({ data }) {
       </Heading>
       <Table>
         <TableHead>
-          <Col className="flex flex-col items-start">Name</Col>
-          <Col>Price</Col>
-          <Col>24hChange</Col>
+          <Col className="w-[18vw] flex justify-start">
+            <p className="text-gray-700 font-sans">Name</p>
+          </Col>
+          <Col className="w-[18vw] flex justify-center">
+            <p className="text-gray-700 font-sans">Price</p>
+          </Col>
+          <Col className="w-[18vw] flex justify-end">
+            <p className="text-gray-700 font-sans">24hChange</p>
+          </Col>
         </TableHead>
         {data.map((coin, i) => (
           <Coins key={i} coin={coin} />
@@ -58,10 +64,9 @@ flex flex-col
 `;
 
 const TableHead = tw.div`
-flex justify-evenly
+flex justify-evenly mt-3
 `;
 const Col = tw.div`
-  
 `;
 
 // export async function getServerSideProps() {
