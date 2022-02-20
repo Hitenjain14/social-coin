@@ -45,7 +45,7 @@ function Navbar({ coins, address }) {
             type="button"
             className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br  shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-8 py-2 text-center mr-4 md:mr-6 ml-2"
           >
-            Artist
+            For Creators
           </button>
           <div
             className="text-base mr-4 bg-gray-200 border-[1px] border-solid border-gray-200 rounded-md
