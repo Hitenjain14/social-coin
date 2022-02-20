@@ -2,7 +2,7 @@ import React from "react";
 import tw from "tailwind-styled-components";
 
 function Coins({ coin }) {
-  console.log(coin);
+  //console.log(coin);
   return (
     <Return>
       <Wrapper>
