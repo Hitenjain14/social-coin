@@ -1,9 +1,31 @@
 import React from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import Modal from 'react-modal';
+import Link from 'next/link';
+import BuyModal from './Modal/BuyModal';
+
+Modal.setAppElement('#__next');
 
 function Navbar({ address }) {
+  const coins = [];
   const router = useRouter();
+
+  const customStyles = {
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      transform: 'translate(-50%, -50%)',
+      backgroundColor: '#f3f4f6',
+      padding: 0,
+      border: 'none',
+    },
+    overlay: {
+      backgroundColor: 'rgba(10,11,13,0.75)',
+    },
+  };
 
   return (
     <header className="w-full bg-white">
@@ -33,20 +55,31 @@ function Navbar({ address }) {
               {address?.slice(0, 7)}...{address?.slice(35)}
             </div>
           </div>
-          <button
-            type="button"
-            className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br  shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-8 py-2 text-center mr-4 ml-2"
-          >
-            Buy
-          </button>
-          <button
-            className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br  shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-8 py-2 text-center mr-8 md:mr-20
+          <Link href={'/?buyWind=1'}>
+            <button
+              type="button"
+              className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br  shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-8 py-2 text-center mr-4 ml-2"
+            >
+              Buy
+            </button>
+          </Link>
+          <Link href={'/?buyWind=1'}>
+            <button
+              className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br  shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-8 py-2 text-center mr-8 md:mr-20
         "
-          >
-            Sell
-          </button>
+            >
+              Sell
+            </button>
+          </Link>
         </div>
       </div>
+      <Modal
+        isOpen={!!router.query.buyWind}
+        onRequestClose={() => router.push('/')}
+        style={customStyles}
+      >
+        <BuyModal coins={coins} address={address} />
+      </Modal>
     </header>
   );
 }

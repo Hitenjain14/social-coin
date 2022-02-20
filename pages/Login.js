@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import tw from 'tailwind-styled-components';
 import { useWeb3 } from '@3rdweb/hooks';
 import { useRouter } from 'next/router';
@@ -10,14 +10,19 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function Login() {
   const { address, connectWallet } = useWeb3();
+  const [wallet, setWallet] = useState(null);
+
   const router = useRouter();
+  useEffect(() => {
+    if (wallet) {
+      router.push('/');
+    }
+  }, [wallet]);
+
   useEffect(() => {
     if (address) {
       router.push('/');
     }
-  }, [address]);
-  useEffect(() => {
-    router.prefetch('/');
   }, []);
 
   const notify = () => {
@@ -38,6 +43,10 @@ function Login() {
     console.log(chainId);
     if (chainId === 80001) {
       await connectWallet('injected');
+      const accounts = await web3.eth.getAccounts();
+      if (accounts) {
+        setWallet(accounts[0]);
+      }
     } else {
       notify();
     }

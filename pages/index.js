@@ -3,16 +3,21 @@ import Slider from '../components/Slider';
 import { useWeb3 } from '@3rdweb/hooks';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
+import web3 from '../ethereum/web3';
 
 export default function Home() {
   const router = useRouter();
   const { address } = useWeb3();
 
   useEffect(() => {
-    if (!address) {
-      router.push('/Login');
-    }
-  }, [address]);
+    const getAcc = async () => {
+      const accounts = await web3.eth.getAccounts();
+      if (!accounts) {
+        router.push('/Login');
+      }
+    };
+    getAcc();
+  }, []);
 
   return (
     <div className=" bg-gray-100">
