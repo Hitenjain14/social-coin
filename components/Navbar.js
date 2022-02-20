@@ -80,6 +80,7 @@ function Navbar({ coins, address }) {
       >
         <BuyModal coins={coins} address={address} />
       </Modal>
+      <div className=" border-b-4 h-[0.2px] border-solid w-full border-gray-900 "></div>
     </header>
   );
 }
