@@ -36,7 +36,7 @@ function Buy({ selectedToken, setAction, walletAddress, setFrom }) {
             }}
           >
             <Icon>
-              <IconImg src={`/${selectedToken?.logo}.png`} />
+              <IconImg src={selectedToken?.logo} />
             </Icon>
             <CoinName>{selectedToken?.name}</CoinName>
           </CoinSelectList>

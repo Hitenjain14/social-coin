@@ -25,7 +25,7 @@ function CoinItem({
     >
       <Main>
         <Icon>
-          <IconImg src={`/${coin.logo}.png`} />
+          <IconImg src={coin?.logo} />
         </Icon>
         <NameDetails>
           <Name>{coin.name}</Name>

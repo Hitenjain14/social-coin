@@ -7,8 +7,7 @@ import BuyModal from './Modal/BuyModal';
 
 Modal.setAppElement('#__next');
 
-function Navbar({ address }) {
-  const coins = [];
+function Navbar({ coins, address }) {
   const router = useRouter();
 
   const customStyles = {
