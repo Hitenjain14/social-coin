@@ -114,7 +114,7 @@ function BuyModal({ coins, address }) {
 export default BuyModal;
 
 const Wrapper = tw.div`
- h-[35rem] w-[27rem] text-white border-[1px] border-solid border-gray-900 flex flex-col
+ h-[35rem] w-[27rem] text-white border-[1px] border-solid border-gray-900 flex flex-col scrollbar-hide
 
 `;
 

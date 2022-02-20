@@ -1,9 +1,11 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 let cached = global.mongoose;
 
 if (!cached) {
   cached = global.mongoose = { conn: null, promise: null };
 }
+
+console.log(process.env.DATABASE);
 
 async function dbConnect() {
   if (cached.conn) {
@@ -15,7 +17,7 @@ async function dbConnect() {
       bufferCommands: false,
     };
     const mongo = process.env.DATABASE.replace(
-      "<password>",
+      '<password>',
       process.env.DATABASE_PASSWORD
     );
     cached.promise = mongoose

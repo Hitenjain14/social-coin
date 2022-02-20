@@ -1,12 +1,12 @@
-import Navbar from "../components/Navbar";
-import Slider from "../components/Slider";
-import { useWeb3 } from "@3rdweb/hooks";
-import { useRouter } from "next/router";
-import { useEffect } from "react";
-import web3 from "../ethereum/web3";
-import Coins from "../models/coinModel";
-import TopCoins from "../components/TopCoins";
-import dbConnect from "../dbConnect";
+import Navbar from '../components/Navbar';
+import Slider from '../components/Slider';
+import { useWeb3 } from '@3rdweb/hooks';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
+import web3 from '../ethereum/web3';
+import Coins from '../models/coinModel';
+import TopCoins from '../components/TopCoins';
+import dbConnect from '../dbConnect';
 
 export default function Home({ coins }) {
   const router = useRouter();
@@ -16,7 +16,7 @@ export default function Home({ coins }) {
     const getAcc = async () => {
       const accounts = await web3.eth.getAccounts();
       if (accounts.length === 0) {
-        router.push("/Login");
+        router.push('/Login');
       }
     };
     getAcc();
