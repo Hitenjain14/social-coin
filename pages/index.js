@@ -12,7 +12,7 @@ export default function Home() {
   useEffect(() => {
     const getAcc = async () => {
       const accounts = await web3.eth.getAccounts();
-      if (!accounts) {
+      if (accounts.length === 0) {
         router.push('/Login');
       }
     };
